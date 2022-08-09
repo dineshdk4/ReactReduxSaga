@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { FetchMockData } from './control/action';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.mockData.mockData);
+  useEffect(() => {
+    dispatch(FetchMockData([]));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>ID</th>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, index) => {
+            return (
+              <tr key={index}>
+                <td style={{ fontSize: "15px" }}>{row.userId}</td>
+                <td style={{ fontSize: "15px" }}>{row.id}</td>
+                <td style={{ fontSize: "15px" }}>{row.title}</td>
+              </tr>
+            )
+          })}
+        </tbody>
+      </table>
     </div>
   );
 }
