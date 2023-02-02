@@ -12,6 +12,6 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Run a multi-line script
-      run: npm i --legacy-peer-deps
-      run: npm run build
-      run: serve -s build
+      run: |
+      npm i --legacy-peer-deps
+      npm run build
